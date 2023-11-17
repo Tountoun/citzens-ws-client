@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<bindings xmlns="http://java.sun.com/xml/ns/jaxb" if-exists="true" version="2.1">
+      
+    <!--
+
+Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.3.0 
+Voir <a href="https://javaee.github.io/jaxb-v2/">https://javaee.github.io/jaxb-v2/</a> 
+Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
+Généré le : 2023.11.17 à 07:23:46 AM GMT 
+
+  -->
+      
+    <bindings xmlns:tns="http://gofar.com/ws" if-exists="true" scd="x-schema::tns">
+            
+        <schemaBindings map="false">
+                  
+            <package name="com.gofar.citzenswsclient.ws"/>
+                
+        </schemaBindings>
+            
+        <bindings if-exists="true" scd="tns:getCitizenInfoRequest">
+                  
+            <class ref="com.gofar.citzenswsclient.ws.GetCitizenInfoRequest"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="tns:getCitizenInfoResponse">
+                  
+            <class ref="com.gofar.citzenswsclient.ws.GetCitizenInfoResponse"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:citizen">
+                  
+            <class ref="com.gofar.citzenswsclient.ws.Citizen"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:bloodGroup">
+                  
+            <typesafeEnumClass ref="com.gofar.citzenswsclient.ws.BloodGroup"/>
+                
+        </bindings>
+          
+    </bindings>
+    
+</bindings>

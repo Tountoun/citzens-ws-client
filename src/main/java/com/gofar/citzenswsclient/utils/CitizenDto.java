@@ -16,12 +16,14 @@ public class CitizenDto {
     private String firstname;
     private String lastname;
     private String blood;
+    private String job;
 
     public Map<String, String> getKeyValues() {
         Map<String, String> map = new HashMap<>();
         map.put("firstname", this.firstname);
         map.put("lastname", this.lastname);
         map.put("blood", this.blood);
+        map.put("job", this.job);
 
         return map;
     }

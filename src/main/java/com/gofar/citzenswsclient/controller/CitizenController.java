@@ -31,7 +31,11 @@ public class CitizenController {
     public ResponseEntity<Response> getCitizen(@PathVariable("cin") String cin) throws CitizenNotFoundException {
         log.info("Get infos of citizen with cin {}", cin);
         Citizen citizen = citizenService.get(cin);
-        Response response = Response.builder().code(200).message("Success").data(citizen).build();
+        Response response = Response.builder()
+                .code(200)
+                .message("Success")
+                .data(citizen)
+                .build();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -39,28 +43,60 @@ public class CitizenController {
     public ResponseEntity<Response> search(@RequestBody CitizenDto dto) {
         log.info("Search citizens based on {}", dto);
         final List<Citizen> citizens = citizenService.search(dto);
-        Response response = Response.builder().code(200).message("Citizens retrieve successfully").data(citizens).build();
+        Response response = Response.builder()
+                .code(200)
+                .message("Citizens retrieve successfully")
+                .data(citizens)
+                .build();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
     @PutMapping("/{cin}")
     public ResponseEntity<Response> update(@PathVariable("cin") String cin, @RequestBody CitizenDto dto) throws CitizenNotFoundException {
         log.info("Update citizen with cin {}", cin);
         final Citizen citizen = citizenService.update(cin, dto);
-        Response response = Response.builder().code(200).message("Citizen updated successfully").data(citizen).build();
+        Response response = Response.builder()
+                .code(200)
+                .message("Citizen updated successfully")
+                .data(citizen)
+                .build();
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<Response> listAll(@RequestParam(defaultValue = "0") int page,
+                                            @RequestParam(defaultValue = "10") int size
+    ) {
+        log.info("List all citizens");
+        return new ResponseEntity<>(
+                Response.builder()
+                        .code(200)
+                        .message("Citizens data retrieve successfully")
+                        .data(citizenService.listAll(page, size).getContent())
+                        .build(),
+                HttpStatus.OK
+        );
     }
 
     @GetMapping("/sync")
     public ResponseEntity<Response> synchronize(@RequestParam String cin) throws CitizenNotFoundException {
         log.info("Synchronize data of citizen with cin {}", cin);
         final Citizen citizen = citizenService.synchronize(cin);
-        Response response = Response.builder().code(200).message("Citizen synchronized successfully").data(citizen).build();
+        Response response = Response.builder()
+                .code(200)
+                .message("Citizen synchronized successfully")
+                .data(citizen)
+                .build();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @ExceptionHandler({CitizenNotFoundException.class})
     public ResponseEntity<Response> handleCitizenNotFoundException(CitizenNotFoundException e) {
-        Response response = Response.builder().message("Not found").data(null).code(404).build();
+        Response response = Response.builder()
+                .message("Not found")
+                .data(null)
+                .code(404)
+                .build();
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 

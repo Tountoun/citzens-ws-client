@@ -1,6 +1,5 @@
 package com.gofar.citzenswsclient.entity;
 
-import lombok.Builder;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -23,7 +22,7 @@ public class Citizen {
     @Field(name = "father")
     private String father;
     @Field(name = "height")
-    private double height;
+    private Double height;
     @Field(name = "job")
     private String job;
     @Field(name = "blood")
@@ -71,11 +70,11 @@ public class Citizen {
         this.father = father;
     }
 
-    public double getHeight() {
+    public Double getHeight() {
         return height;
     }
 
-    public void setHeight(double height) {
+    public void setHeight(Double height) {
         this.height = height;
     }
 

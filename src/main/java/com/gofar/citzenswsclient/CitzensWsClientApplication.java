@@ -16,11 +16,4 @@ public class CitzensWsClientApplication {
         SpringApplication.run(CitzensWsClientApplication.class, args);
     }
 
-    @Bean
-    CommandLineRunner runner(CitizensClient client) {
-        return args -> {
-            GetCitizenInfoResponse response = client.getCitizenInfoResponse("150-100-401");
-            log.info("Citizen name {}", response.getData().getBloodGroup());
-        };
-    }
 }

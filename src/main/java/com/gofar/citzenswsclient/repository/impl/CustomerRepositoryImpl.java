@@ -64,7 +64,7 @@ public class CustomerRepositoryImpl implements CustomRepository {
 
     public Citizen mapping(Citizen citizenFromWsMapped) {
         Citizen updated = new Citizen();
-        final List<String> fields = Arrays.stream(citizenFromWsMapped.getClass().getDeclaredFields()).map(Field::toString).toList();
+        final List<String> fields = Arrays.stream(citizenFromWsMapped.getClass().getDeclaredFields()).map(Field::getName).toList();
         fields.forEach(field -> {
             try {
                 setProperty(updated, field, getProperty(citizenFromWsMapped, field));

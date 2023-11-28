@@ -1,8 +1,9 @@
 spring:
   application:
     name: Citzen Ws Application
-
 webservice:
   uri: http://localhost:8093/ws/citizens.wsdl
   client:
     defaultUri: http://localhost:8093/ws
+server:
+  port: 8090

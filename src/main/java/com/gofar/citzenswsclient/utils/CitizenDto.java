@@ -1,8 +1,6 @@
 package com.gofar.citzenswsclient.utils;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +8,8 @@ import java.util.Map;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class CitizenDto {
 
     private String cin;

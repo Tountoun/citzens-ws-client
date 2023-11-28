@@ -16,6 +16,7 @@
     <description>citzens-ws-client</description>
     <developers>
         <developer>
+            <id>Tountoun</id>
             <name>Tountoun Abel AYANOU</name>
             <email>tountounabela@gmail.com</email>
         </developer>
@@ -23,6 +24,7 @@
     <properties>
         <java.version>17</java.version>
         <jaxb.version>3.1.0</jaxb.version>
+        <junit.version>5.10.0</junit.version>
     </properties>
     <dependencies>
         <dependency>
@@ -68,6 +70,13 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>

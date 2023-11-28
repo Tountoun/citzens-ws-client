@@ -17,6 +17,8 @@ public class CitizenDto {
     private String lastname;
     private String blood;
     private String job;
+    private String father;
+    private String mother;
 
     public Map<String, String> getKeyValues() {
         Map<String, String> map = new HashMap<>();
@@ -24,6 +26,8 @@ public class CitizenDto {
         map.put("lastname", this.lastname);
         map.put("blood", this.blood);
         map.put("job", this.job);
+        map.put("father", this.father);
+        map.put("mother", this.mother);
 
         return map;
     }

@@ -7,8 +7,9 @@ import com.gofar.citzenswsclient.utils.CitizenDto;
 import com.gofar.citzenswsclient.utils.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -88,6 +89,19 @@ public class CitizenController {
                 .data(citizen)
                 .build();
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/report")
+    public ResponseEntity<Resource> generateReport() throws Exception {
+        byte[]  reportData = citizenService.getRegistrationReport();
+        ByteArrayResource resource = new ByteArrayResource(reportData);
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_PDF)
+                .contentLength(resource.contentLength())
+                .header(HttpHeaders.CONTENT_DISPOSITION, ContentDisposition
+                        .attachment().filename("citizens-report.pdf").build().toString())
+                .body(resource);
     }
 
     @ExceptionHandler({CitizenNotFoundException.class})

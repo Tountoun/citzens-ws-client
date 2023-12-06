@@ -8,12 +8,16 @@ import com.gofar.citzenswsclient.repository.CustomRepository;
 import com.gofar.citzenswsclient.utils.CitizenDto;
 import com.gofar.citzenswsclient.utils.MappingUtils;
 import com.gofar.citzenswsclient.ws.GetCitizenInfoResponse;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 
+import java.io.File;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -75,6 +79,16 @@ public class CitizenService {
             throw new CitizenNotFoundException("Citizen not found");
         }
         return customRepository.updateCitizen(cin, citizenDto);
+    }
+
+    public byte[] getRegistrationReport() throws Exception {
+        File file = ResourceUtils.getFile("classpath:report.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(citizenRepository.findAll());
+
+        JasperPrint print = JasperFillManager.fillReport(jasperReport, null, dataSource);
+
+        return JasperExportManager.exportReportToPdf(print);
     }
 
     @Autowired
